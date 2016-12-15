@@ -5,19 +5,18 @@ package net.ladstatt.sierpinski
 
 // Program that draws the Sierpinski fractal.
 
-public class Pos(val pos:Float, val length:Float ) {
+case class Pos(val xCoordinate:Float, val yCoordinate:Float )
 
-
+case class SColor(val a:Double, val b:Double, val c:Double)
+object SColor{
+  val White = SColor(1,1,1)
+  val Black = SColor(0,0,0)
 }
 
-public class sColor(val a:Float, val b:Float, val c:Float){
-
+case class Triangle(val a:Pos, val b:Pos, val c:Pos, val color:SColor) {
+  def this(a: Pos, abstand: Float) = this(a, Pos(a.xCoordinate + abstand, abstand), Pos(abstand / 2, ((Math.sqrt(3) / 2).toFloat) * abstand))
 }
 
-public class Triangle(val punktA:Pos, val punktB:Pos, val punktC:Pos, val color:SColor){
-  def this(val punkt:Pos, val color:Float) = this()
+case class Sierpinski(val triangles:List[Triangle]) {
 
-  def this(val punkt:Pos, val color:Int) = this()
-
-  def this(val punkt:Post, val color:SColor) = this()
 }
